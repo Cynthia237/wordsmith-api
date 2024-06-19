@@ -4,7 +4,17 @@ pipeline {
         maven 'Maven'
     }   
     stages {
-        
+
+        stage('sonar analysis') {
+            environment {
+                scannerHome = tool 'SonarQube-Scanner'
+            }
+            steps {
+                withsonarQubeScannerEnv('SonarQube-Scanner')
+            }
+        }
+    }
+}
         stage('Build with Maven') {
             steps {
                 sh 'mvn clean package'
