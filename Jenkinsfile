@@ -2,23 +2,10 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
+        git 'Default'
     }   
     stages {
-
-        stage('sonar analysis') {
-            environment {
-                scannerHome = tool 'SonarQube Scanner 5.0.1.3006'
-            }
-            steps {
-                withsonarQubeScannerEnv('SonarQube Scanner 5.0.1.3006')
-<<<<<<< HEAD
-            sh '${scannerHome}/bin/Sonarscannar'
-=======
->>>>>>> f91dc579d1b7b5e9ef850f4bb664f23e9a7da8a0
-            }
-        }
-    }
-}
+        
         stage('Build with Maven') {
             steps {
                 sh 'mvn clean package'
@@ -37,7 +24,7 @@ pipeline {
                    // def pomFile = readMavenPom project: '.'
                     //def appName = pomFile.getName()
                   
-                  sh "docker build -t wordsmith-api:latest -f Dockerfile --build-arg JAR_FILE=target/wordapi.jar ."
+                  sh "docker build -t wordsmith-api:latest -f Dockerfile ."
                 
                  //sh 'docker build -t wordsmith-api:${BUILD_NUMBER} .'
                   sh 'docker tag wordsmith-api:latest mncy580/wordsmith-api:${BUILD_NUMBER}'
@@ -47,4 +34,5 @@ pipeline {
                 }
             }     
         }
-    
+    }
+}
