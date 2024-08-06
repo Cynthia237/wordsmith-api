@@ -11,7 +11,10 @@ pipeline {
             }
             steps {
                 withsonarQubeScannerEnv('SonarQube Scanner 5.0.1.3006')
+<<<<<<< HEAD
             sh '${scannerHome}/bin/Sonarscannar'
+=======
+>>>>>>> f91dc579d1b7b5e9ef850f4bb664f23e9a7da8a0
             }
         }
     }
