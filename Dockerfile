@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM maven:3.9.8-openjdk-17 AS build
+FROM maven:3.9.8 AS build
 WORKDIR /app
 
 # Copy the pom.xml and source code
@@ -19,4 +19,4 @@ COPY --from=build /app/target/*.jar my-api-application.jar
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "my-api-application.jar"]
+ENTRYPOINT ["java", "-jar", "my-api-application.jar"]   
