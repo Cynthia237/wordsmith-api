@@ -1,12 +1,12 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'Maven 3.9.8'
         git 'Default'
     }   
     stages {
         
-        stage('Build with Maven') {
+        stage('Build with Maven 3.9.8') {
             steps {
                 sh 'mvn clean package'
                 
@@ -26,7 +26,7 @@ pipeline {
                   
                   sh "docker build -t wordsmith-api:latest -f Dockerfile ."
                 
-                 //sh 'docker build -t wordsmith-api:${BUILD_NUMBER} .'
+                 //sh 'docker build -t wordsmith-gapi:${BUILD_NUMBER} .'
                   sh 'docker tag wordsmith-api:latest mncy580/wordsmith-api:${BUILD_NUMBER}'
                   sh 'docker push mncy580/wordsmith-api:${BUILD_NUMBER}'
                      
