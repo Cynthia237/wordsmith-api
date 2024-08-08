@@ -1,12 +1,12 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.9.8'
+        maven 'Apache Maven 3.9.8'
         git 'Default'
     }   
     stages {
         
-        stage('Build with Maven 3.9.8') {
+        stage('Build with Maven') {
             steps {
                 sh 'mvn clean package'
                 
